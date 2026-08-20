@@ -69,6 +69,7 @@ def _detect_backend(data: Any) -> Backend:
         return PandasBackend()
     elif "polars" in type_name:
         from dqlite.backends.polars_backend import PolarsBackend
+
         return PolarsBackend()
 
     # Default to pandas

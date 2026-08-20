@@ -147,9 +147,7 @@ class RegexMatchExpectation(Expectation):
         return "matches_regex"
 
     def evaluate(self, data: Any, backend: Backend) -> ExpectationResult:
-        non_matching, total = backend.count_regex_mismatch(
-            data, self.column, self.pattern
-        )
+        non_matching, total = backend.count_regex_mismatch(data, self.column, self.pattern)
 
         return ExpectationResult(
             expectation_type=self.expectation_type,

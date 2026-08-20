@@ -8,6 +8,7 @@ import json
 @dataclass
 class ExpectationResult:
     """Result of a single expectation check."""
+
     expectation_type: str
     column: Optional[str]
     success: bool
@@ -19,6 +20,7 @@ class ExpectationResult:
 @dataclass
 class ValidationResult:
     """Aggregate result of a validation run."""
+
     success: bool
     results: List[ExpectationResult] = field(default_factory=list)
     statistics: Dict[str, Any] = field(default_factory=dict)
@@ -58,9 +60,7 @@ class ValidationResult:
         for r in self.results:
             status = "✅" if r.success else "❌"
             col = r.column or "-"
-            lines.append(
-                f"| {r.expectation_type} | {col} | {status} | {r.unexpected_count} |"
-            )
+            lines.append(f"| {r.expectation_type} | {col} | {status} | {r.unexpected_count} |")
         return "\n".join(lines)
 
     def to_github_annotation(self) -> List[Dict[str, Any]]:
@@ -68,11 +68,13 @@ class ValidationResult:
         annotations = []
         for r in self.results:
             if not r.success:
-                annotations.append({
-                    "file": "data_quality",
-                    "line": 1,
-                    "title": f"{r.expectation_type} failed",
-                    "message": f"Column '{r.column}': {r.unexpected_count} unexpected values ({r.unexpected_percent:.2f}%)",
-                    "annotation_level": "failure",
-                })
+                annotations.append(
+                    {
+                        "file": "data_quality",
+                        "line": 1,
+                        "title": f"{r.expectation_type} failed",
+                        "message": f"Column '{r.column}': {r.unexpected_count} unexpected values ({r.unexpected_percent:.2f}%)",
+                        "annotation_level": "failure",
+                    }
+                )
         return annotations

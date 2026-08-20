@@ -12,7 +12,9 @@ except ImportError:
 def send_report(webhook_url: str, result, title: Optional[str] = None):
     """Send validation result to Slack webhook."""
     if requests is None:
-        raise ImportError("requests is required for Slack integration. Install with: pip install requests")
+        raise ImportError(
+            "requests is required for Slack integration. Install with: pip install requests"
+        )
 
     color = "#36a64f" if result.success else "#ff0000"
     status = "PASS" if result.success else "FAIL"

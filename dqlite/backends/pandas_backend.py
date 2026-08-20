@@ -25,7 +25,9 @@ class PandasBackend(Backend):
         duplicate_count = total - unique
         return duplicate_count, total
 
-    def count_out_of_range(self, data: Any, column: str, min_val: Any, max_val: Any) -> Tuple[int, int]:
+    def count_out_of_range(
+        self, data: Any, column: str, min_val: Any, max_val: Any
+    ) -> Tuple[int, int]:
         df = self._get_df(data)
         series = df[column]
         # Handle nulls gracefully

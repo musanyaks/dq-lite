@@ -18,7 +18,9 @@ class Backend(ABC):
         pass
 
     @abstractmethod
-    def count_out_of_range(self, data: Any, column: str, min_val: Any, max_val: Any) -> Tuple[int, int]:
+    def count_out_of_range(
+        self, data: Any, column: str, min_val: Any, max_val: Any
+    ) -> Tuple[int, int]:
         """Return (out_of_range_count, total_rows)."""
         pass
 

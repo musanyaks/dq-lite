@@ -24,7 +24,9 @@ def validate_csv(
     path: Path = typer.Argument(..., help="Path to CSV file"),
     config: Optional[Path] = typer.Option(None, "--config", "-c", help="YAML config file"),
     output: Optional[Path] = typer.Option(None, "--output", "-o", help="Output file for report"),
-    format: str = typer.Option("rich", "--format", "-f", help="Output format: rich, json, markdown"),
+    format: str = typer.Option(
+        "rich", "--format", "-f", help="Output format: rich, json, markdown"
+    ),
 ):
     """Validate a CSV file against expectations."""
     import pandas as pd
@@ -38,6 +40,7 @@ def validate_csv(
     # If no config provided, run a basic suite
     if config is None:
         from dqlite import expect
+
         expectations = _build_default_expectations(df)
     else:
         expectations = _load_config(config)
@@ -118,13 +121,15 @@ def _print_rich_report(result: ValidationResult):
     color = "green" if result.success else "red"
     status = "PASS ✅" if result.success else "FAIL ❌"
 
-    console.print(Panel.fit(
-        f"[bold {color}]{status}[/bold {color}]  |  "
-        f"{result.statistics['evaluated_expectations']} checks  |  "
-        f"{result.statistics['evaluation_time_seconds']}s",
-        title="dq-lite Report",
-        border_style=color,
-    ))
+    console.print(
+        Panel.fit(
+            f"[bold {color}]{status}[/bold {color}]  |  "
+            f"{result.statistics['evaluated_expectations']} checks  |  "
+            f"{result.statistics['evaluation_time_seconds']}s",
+            title="dq-lite Report",
+            border_style=color,
+        )
+    )
 
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("Expectation", style="cyan")

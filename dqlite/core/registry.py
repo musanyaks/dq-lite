@@ -18,7 +18,7 @@ class ExpectationRegistry:
 
         # Import built-in expectations to trigger registration
         import dqlite.expectations.column  # noqa
-        import dqlite.expectations.table   # noqa
+        import dqlite.expectations.table  # noqa
 
         cls._discovered = True
 

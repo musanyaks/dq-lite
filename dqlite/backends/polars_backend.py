@@ -14,7 +14,9 @@ class PolarsBackend(Backend):
     def count_duplicates(self, data: Any, column: str) -> Tuple[int, int]:
         raise NotImplementedError("Polars backend: implement count_duplicates")
 
-    def count_out_of_range(self, data: Any, column: str, min_val: Any, max_val: Any) -> Tuple[int, int]:
+    def count_out_of_range(
+        self, data: Any, column: str, min_val: Any, max_val: Any
+    ) -> Tuple[int, int]:
         raise NotImplementedError("Polars backend: implement count_out_of_range")
 
     def count_not_in_set(self, data: Any, column: str, allowed: Set) -> Tuple[int, int]:
