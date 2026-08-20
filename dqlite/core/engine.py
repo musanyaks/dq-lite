@@ -1,12 +1,11 @@
 """Core validation engine."""
 
-from typing import List, Any, Dict, Optional
 import time
+from typing import Any, List, Optional
 
-from dqlite.core.result import ValidationResult, ExpectationResult
-from dqlite.core.registry import ExpectationRegistry
 from dqlite.backends.base import Backend
 from dqlite.backends.pandas_backend import PandasBackend
+from dqlite.core.result import ExpectationResult, ValidationResult
 
 
 def validate(
@@ -14,8 +13,7 @@ def validate(
     expectations: List[Any],
     backend: Optional[Backend] = None,
 ) -> ValidationResult:
-    """
-    Run a suite of expectations against a dataset.
+    """Run a suite of expectations against a dataset.
 
     Args:
         data: Dataset to validate (DataFrame, table, etc.)

@@ -2,11 +2,10 @@
 
 import pandas as pd
 
+from dqlite.backends.base import Backend
 from dqlite.core.engine import validate
 from dqlite.core.result import ExpectationResult
 from dqlite.expectations.base import Expectation
-from dqlite.backends.base import Backend
-from dqlite import expect
 
 
 class IsEvenExpectation(Expectation):

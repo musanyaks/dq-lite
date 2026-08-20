@@ -1,6 +1,7 @@
 """Auto-discovery of expectation classes."""
 
-from typing import Type, Dict
+from typing import Dict, Type
+
 from dqlite.expectations.base import Expectation
 
 

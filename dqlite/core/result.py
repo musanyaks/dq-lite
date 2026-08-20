@@ -1,8 +1,8 @@
 """Validation result models."""
 
-from dataclasses import dataclass, field
-from typing import List, Dict, Any, Optional
 import json
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
 
 
 @dataclass
@@ -48,12 +48,12 @@ class ValidationResult:
     def to_markdown(self) -> str:
         lines = [
             "# Data Quality Report",
-            f"",
+            "",
             f"**Overall:** {'PASS ✅' if self.success else 'FAIL ❌'}",
             f"**Total Checks:** {len(self.results)}",
             f"**Passed:** {sum(1 for r in self.results if r.success)}",
             f"**Failed:** {sum(1 for r in self.results if not r.success)}",
-            f"",
+            "",
             "| Expectation | Column | Status | Unexpected |",
             "|-------------|--------|--------|------------|",
         ]

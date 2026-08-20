@@ -2,9 +2,9 @@
 
 from typing import Any
 
-from dqlite.expectations.base import Expectation
-from dqlite.core.result import ExpectationResult
 from dqlite.backends.base import Backend
+from dqlite.core.result import ExpectationResult
+from dqlite.expectations.base import Expectation
 
 
 class TableExpectationBuilder:

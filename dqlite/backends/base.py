@@ -1,7 +1,7 @@
 """Abstract backend interface."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Tuple, Set
+from typing import Any, Set, Tuple
 
 
 class Backend(ABC):

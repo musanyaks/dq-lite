@@ -1,7 +1,7 @@
 """Pandas execution backend."""
 
-from typing import Any, Tuple, Set
 import re
+from typing import Any, Set, Tuple
 
 from dqlite.backends.base import Backend
 

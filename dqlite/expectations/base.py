@@ -1,10 +1,10 @@
 """Base expectation class."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Optional
+from typing import Any
 
-from dqlite.core.result import ExpectationResult
 from dqlite.backends.base import Backend
+from dqlite.core.result import ExpectationResult
 
 
 class Expectation(ABC):

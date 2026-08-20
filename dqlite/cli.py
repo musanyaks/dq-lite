@@ -5,8 +5,8 @@ from typing import Optional
 
 import typer
 from rich.console import Console
-from rich.table import Table
 from rich.panel import Panel
+from rich.table import Table
 
 from dqlite.core.engine import validate
 from dqlite.core.result import ValidationResult
@@ -39,7 +39,6 @@ def validate_csv(
 
     # If no config provided, run a basic suite
     if config is None:
-        from dqlite import expect
 
         expectations = _build_default_expectations(df)
     else:
@@ -90,8 +89,8 @@ def _build_default_expectations(df):
 def _load_config(config_path: Path):
     """Load expectations from YAML config."""
     import yaml
+
     from dqlite import expect
-    from dqlite.core.registry import ExpectationRegistry
 
     with open(config_path) as f:
         cfg = yaml.safe_load(f)
@@ -158,7 +157,7 @@ def init(
     path: Path = typer.Argument(Path("dqlite.yaml"), help="Config file path"),
 ):
     """Generate a starter configuration file."""
-    template = """# dq-lite configuration
+    template = r"""# dq-lite configuration
 # docs: https://github.com/yourname/dq-lite
 
 dataset:

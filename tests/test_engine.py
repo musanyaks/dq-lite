@@ -1,11 +1,10 @@
 """Tests for the validation engine."""
 
-import pytest
 import pandas as pd
 
+from dqlite import expect
 from dqlite.core.engine import validate
 from dqlite.core.result import ValidationResult
-from dqlite import expect
 from dqlite.expectations.table import expect_table
 
 

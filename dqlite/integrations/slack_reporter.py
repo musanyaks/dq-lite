@@ -1,7 +1,6 @@
 """Slack notification integration."""
 
 from typing import Optional
-import json
 
 try:
     import requests

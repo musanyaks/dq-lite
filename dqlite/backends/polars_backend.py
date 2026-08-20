@@ -1,6 +1,6 @@
 """Polars execution backend — community contribution welcome."""
 
-from typing import Any, Tuple, Set
+from typing import Any, Set, Tuple
 
 from dqlite.backends.base import Backend
 
