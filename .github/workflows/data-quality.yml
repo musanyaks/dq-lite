@@ -1,0 +1,52 @@
+name: Data Quality Gate
+
+on:
+  pull_request:
+    paths:
+      - "data/**"
+      - "*.csv"
+      - "*.yaml"
+      - "*.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -e "."
+
+      - name: Validate data
+        run: |
+          if [ -f "dqlite.yaml" ]; then
+            dqlite validate-csv data/orders.csv --config dqlite.yaml --format json --output report.json
+          else
+            echo "No dqlite.yaml found, running default checks"
+            dqlite validate-csv data/orders.csv --format json --output report.json
+          fi
+
+      - name: Annotate PR
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('report.json', 'utf8'));
+            report.results.filter(r => !r.success).forEach(r => {
+              github.rest.checks.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: `dq-lite: ${r.expectation_type}`,
+                head_sha: context.sha,
+                status: 'completed',
+                conclusion: 'failure',
+                output: {
+                  title: `${r.expectation_type} failed`,
+                  summary: `Column: ${r.column || 'N/A'}\nUnexpected: ${r.unexpected_count}\nDetails: ${JSON.stringify(r.details)}`
+                }
+              });
+            });

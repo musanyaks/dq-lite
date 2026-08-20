@@ -1,0 +1,49 @@
+# dq-lite configuration
+# Place this in your repo root and run:
+#   dqlite validate-csv data.csv --config dqlite.yaml
+
+dataset:
+  type: csv
+  path: data/orders.csv
+
+expectations:
+  # Table-level
+  - type: row_count_greater_than
+    kwargs:
+      threshold: 0
+
+  - type: has_columns
+    kwargs:
+      columns: ["order_id", "user_id", "product_id", "quantity", "price", "status"]
+
+  # Column-level
+  - type: not_null
+    column: order_id
+
+  - type: not_null
+    column: user_id
+
+  - type: unique
+    column: order_id
+
+  - type: between
+    column: quantity
+    kwargs:
+      min_val: 1
+      max_val: 100
+
+  - type: between
+    column: price
+    kwargs:
+      min_val: 0.01
+      max_val: 10000
+
+  - type: in_set
+    column: status
+    kwargs:
+      allowed: ["pending", "completed", "cancelled", "refunded"]
+
+  - type: matches_regex
+    column: email
+    kwargs:
+      pattern: ".+@.+\..+"
