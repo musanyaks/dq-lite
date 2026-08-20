@@ -1,4 +1,4 @@
-# dq-lite ⚡
+# dq-lite 
 
 > **Lightweight data quality validation — fast, pluggable, CI-native.**
 
