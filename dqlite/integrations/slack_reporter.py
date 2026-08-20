@@ -8,7 +8,7 @@ except ImportError:
     requests = None
 
 
-def send_report(webhook_url: str, result, title: Optional[str] = None):
+def send_report(webhook_url: str, result, title: Optional[str] = None) -> None:
     """Send validation result to Slack webhook."""
     if requests is None:
         raise ImportError(

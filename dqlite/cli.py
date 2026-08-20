@@ -65,12 +65,12 @@ def validate_csv(
         raise typer.Exit(1)
 
 
-def _build_default_expectations(df):
+def _build_default_expectations(df) -> List[Expectation]:
     """Build a sensible default expectation suite."""
     from dqlite import expect
     from dqlite.expectations.table import expect_table
 
-    expectations = []
+    expectations: List[Expectation] = []
 
     # Table-level
     expectations.append(expect_table().row_count().greater_than(0))
@@ -86,7 +86,7 @@ def _build_default_expectations(df):
     return expectations
 
 
-def _load_config(config_path: Path):
+def _load_config(config_path: Path) -> List[Expectation]:
     """Load expectations from YAML config."""
     import yaml
 
