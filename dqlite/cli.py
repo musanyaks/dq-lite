@@ -1,7 +1,7 @@
 """Command-line interface for dq-lite."""
 
 from pathlib import Path
-from typing import  List, Optional
+from typing import List, Optional
 
 import typer
 from rich.console import Console
