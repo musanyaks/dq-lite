@@ -1,11 +1,12 @@
 # dq-lite 
 
+[![CI](https://github.com/musanyaks/dq-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/musanyaks/dq-lite/actions)
+
 > **Lightweight data quality validation — fast, pluggable, CI-native.**
 
 Validate millions of rows in seconds. Add domain-specific checks in 20 lines. Fail pull requests on bad data.
 
-![CI](https://github.com/musanyaks/dq-lite/actions/workflows/ci.yml/badge.svg)
----
+
 
 ## Why dq-lite?
 
