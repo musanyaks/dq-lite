@@ -1,7 +1,7 @@
 """Command-line interface for dq-lite."""
 
 from pathlib import Path
-from typing import Optional
+from typing import  List, Optional
 
 import typer
 from rich.console import Console
@@ -10,6 +10,7 @@ from rich.table import Table
 
 from dqlite.core.engine import validate
 from dqlite.core.result import ValidationResult
+from dqlite.expectations.base import Expectation
 
 app = typer.Typer(
     name="dqlite",
